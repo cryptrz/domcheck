@@ -10,8 +10,8 @@ report="recon_$1_on_$(date +%F_at_%H:%M:%S).txt"
 {
         echo $(curl -I -s $1 | grep Server)
         host $1
-        dig CNAME $1 | grep IN
+        dig CNAME $1 | grep SOA
         dig TXT $1 | grep IN
 } > $report
 
-echo "Report saved in $(pwd)/$report"
+echo "Report saved in $(pwd)/$report" 
