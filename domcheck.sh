@@ -10,6 +10,7 @@ report="recon_$1_on_$(date +%F_at_%H:%M:%S).txt"
 {
         echo $(curl -I -s $1 | grep Server)
         host $1
+        dig NS $1 | grep NS | grep -v ";"
         dig CNAME $1 | grep SOA
         dig TXT $1 | grep IN
 } > $report
